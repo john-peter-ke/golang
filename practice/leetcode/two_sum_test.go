@@ -24,6 +24,16 @@ func TestTwoSum(t *testing.T) {
 		target3 := 6
 		expected3 := []int{0, 1}
 		assert.Equal(t, TwoSum(input3, target3), expected3)
+
+		input4 := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+		target4 := 8
+		expected4 := []int{0, 6}
+		assert.Equal(t, TwoSumSorted(input4, target4), expected4)
+
+		input5 := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+		target5 := 0
+		var expected5 []int
+		assert.Equal(t, TwoSumSorted(input5, target5), expected5)
 	})
 
 }

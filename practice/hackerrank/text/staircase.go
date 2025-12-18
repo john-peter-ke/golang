@@ -1,9 +1,7 @@
-package main
+package text
 
 import (
-	"bufio"
 	"fmt"
-	"io"
 	"strings"
 )
 
@@ -36,19 +34,4 @@ func symbol(n int) string {
 	}
 
 	return str.String()
-}
-
-func readLine(reader *bufio.Reader) string {
-	str, _, err := reader.ReadLine()
-	if err == io.EOF {
-		return ""
-	}
-
-	return strings.TrimRight(string(str), "\r\n")
-}
-
-func checkError(err error) {
-	if err != nil {
-		panic(err)
-	}
 }

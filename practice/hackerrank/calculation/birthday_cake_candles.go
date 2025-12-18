@@ -1,4 +1,4 @@
-package main
+package calculation
 
 /*
  * Complete the 'birthdayCakeCandles' function below.

@@ -1,9 +1,6 @@
 package main
 
 import (
-	"bufio"
-	"io"
-	"strings"
 	"time"
 )
 
@@ -23,19 +20,4 @@ func TimeConversion(s string) string {
 	}
 	return t.Format(layout2)
 
-}
-
-func readLine(reader *bufio.Reader) string {
-	str, _, err := reader.ReadLine()
-	if err == io.EOF {
-		return ""
-	}
-
-	return strings.TrimRight(string(str), "\r\n")
-}
-
-func checkError(err error) {
-	if err != nil {
-		panic(err)
-	}
 }

@@ -1,9 +1,6 @@
-package main
+package calculation
 
 import (
-	"bufio"
-	"io"
-	"strings"
 	"sync"
 	"sync/atomic"
 )
@@ -30,19 +27,4 @@ func SimpleArraySum(ar []int32) int32 {
 	wg.Wait()
 
 	return sum.Load()
-}
-
-func readLine(reader *bufio.Reader) string {
-	str, _, err := reader.ReadLine()
-	if err == io.EOF {
-		return ""
-	}
-
-	return strings.TrimRight(string(str), "\r\n")
-}
-
-func checkError(err error) {
-	if err != nil {
-		panic(err)
-	}
 }

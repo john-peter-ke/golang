@@ -12,3 +12,20 @@ func TwoSum(nums []int, target int) []int {
 	}
 	return []int{}
 }
+
+func TwoSumSorted(num []int, target int) []int {
+	size := len(num)
+	left := 0
+	right := size - 1
+	for i := 0; i < right && right > left; i++ {
+		if num[left]+num[right] > target {
+			right = right - 1
+		}
+
+		if num[left]+num[right] == target {
+			return []int{left, right}
+		}
+	}
+
+	return nil
+}
