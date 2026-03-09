@@ -1,4 +1,4 @@
-package deque
+package queue
 
 import (
 	"testing"
@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestQueue(t *testing.T) {
+func TestDoublyEndedQueue(t *testing.T) {
 
 	t.Run("Test IsEmpty", func(t *testing.T) {
 		dq := NewDoublyEndedQueue[int]()

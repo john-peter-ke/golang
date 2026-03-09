@@ -1,6 +1,8 @@
 package tree
 
-import "github.com/mucunga90/go/constraint"
+import (
+	"github.com/mucunga90/go/constraint"
+)
 
 type btree[T constraint.Ordered] struct {
 	root *bnode[T]
@@ -107,4 +109,128 @@ func (n *btree[T]) Depth() int {
 	}
 
 	return maxLength(n.root)
+}
+
+// DFS Traversals
+// Inorder (Left → Root → Right)
+// Used in Binary Search Trees to get sorted order.
+func (n *btree[T]) TraverseInorder() []T {
+	nodes := make([]T, 0)
+	var traverse func(node *bnode[T])
+	traverse = func(node *bnode[T]) {
+		if node == nil {
+			return
+		}
+
+		traverse(node.left)
+		nodes = append(nodes, node.value)
+		traverse(node.right)
+	}
+
+	traverse(n.root)
+	return nodes
+}
+
+// DFS Traversals
+// Preorder (Root → Left → Right)
+// Used for tree copying and serialization.
+func (n btree[T]) TraversePreOrder() []T {
+	nodes := make([]T, 0)
+	var traverse func(node *bnode[T])
+	traverse = func(node *bnode[T]) {
+		if node == nil {
+			return
+		}
+
+		nodes = append(nodes, node.value)
+		traverse(node.left)
+		traverse(node.right)
+	}
+
+	traverse(n.root)
+	return nodes
+}
+
+// DFS Traversals
+// Postorder (Left → Right → Root)
+// Used when deleting trees.
+func (n btree[T]) TraversePostOrder() []T {
+	nodes := make([]T, 0)
+	var traverse func(node *bnode[T])
+	traverse = func(node *bnode[T]) {
+		if node == nil {
+			return
+		}
+
+		traverse(node.left)
+		traverse(node.right)
+		nodes = append(nodes, node.value)
+	}
+
+	traverse(n.root)
+	return nodes
+}
+
+// BFS Traversals
+func (n btree[T]) TraverseLevelOrder() []T {
+	nodes := make([]T, 0)
+	if n.root == nil {
+		return nodes
+	}
+
+	queue := make([]*bnode[T], 0)
+	queue = append(queue, n.root)
+	for len(queue) > 0 {
+		node := queue[0]
+		nodes = append(nodes, node.value)
+
+		if node.left != nil {
+			queue = append(queue, node.left)
+		}
+
+		if node.right != nil {
+			queue = append(queue, node.right)
+		}
+
+		queue = queue[1:]
+	}
+
+	return nodes
+}
+
+func (n btree[T]) InvertTree() {
+	var invert func(node *bnode[T])
+	invert = func(node *bnode[T]) {
+		if node == nil {
+			return
+		}
+
+		ln := node.left
+		rn := node.right
+		node.left = rn
+		node.right = ln
+		invert(node.left)
+		invert(node.right)
+	}
+
+	invert(n.root)
+}
+
+func NewFromArray[T constraint.Ordered](elements []T) *btree[T] {
+	tree := &btree[T]{}
+	tree.root = addFromSortedArray(elements, 0, len(elements)-1)
+	return tree
+}
+
+func addFromSortedArray[T constraint.Ordered](elements []T, start, end int) *bnode[T] {
+	if start > end {
+		return nil
+	}
+
+	mid := (start + end) / 2
+	node := &bnode[T]{value: elements[mid]}
+	node.left = addFromSortedArray(elements, start, mid-1)
+	node.right = addFromSortedArray(elements, mid+1, end)
+
+	return node
 }

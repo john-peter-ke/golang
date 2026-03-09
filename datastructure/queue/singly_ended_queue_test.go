@@ -9,7 +9,7 @@ import (
 func TestQueue(t *testing.T) {
 
 	t.Run("Test EnQueue", func(t *testing.T) {
-		queue := New[int]()
+		queue := NewSinglyEnded[int]()
 		queue.EnQueue(1)
 		queue.EnQueue(2)
 		queue.EnQueue(3)
@@ -21,7 +21,7 @@ func TestQueue(t *testing.T) {
 	})
 
 	t.Run("Test DeQueue", func(t *testing.T) {
-		queue := New[int]()
+		queue := NewSinglyEnded[int]()
 		queue.EnQueue(6)
 		queue.EnQueue(7)
 		queue.EnQueue(8)
@@ -34,7 +34,7 @@ func TestQueue(t *testing.T) {
 	})
 
 	t.Run("Test Queue IsEmpty ", func(t *testing.T) {
-		queue := New[int]()
+		queue := NewSinglyEnded[int]()
 		assert.Equal(t, true, queue.IsEmpty())
 		queue.EnQueue(1)
 		queue.EnQueue(2)
@@ -43,7 +43,7 @@ func TestQueue(t *testing.T) {
 	})
 
 	t.Run("Test Queue Length", func(t *testing.T) {
-		queue := New[int]()
+		queue := NewSinglyEnded[int]()
 		queue.EnQueue(1)
 		queue.EnQueue(2)
 		queue.EnQueue(3)

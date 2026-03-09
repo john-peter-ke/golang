@@ -5,7 +5,7 @@ type queue[T any] struct {
 }
 
 // New creates and returns a new queue
-func New[T any]() *queue[T] {
+func NewSinglyEnded[T any]() *queue[T] {
 	return &queue[T]{values: make([]T, 0)}
 }
 

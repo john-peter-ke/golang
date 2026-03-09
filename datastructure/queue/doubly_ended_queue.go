@@ -1,4 +1,4 @@
-package deque
+package queue
 
 type deque[T any] struct {
 	values []T
