@@ -13,4 +13,16 @@ func TestReverseString(t *testing.T) {
 		expected := "olleh"
 		assert.Equal(t, expected, reverseString(s))
 	})
+
+	t.Run("Case 2", func(t *testing.T) {
+		s := "he"
+		expected := "eh"
+		assert.Equal(t, expected, reverseString(s))
+	})
+
+	t.Run("Case 3", func(t *testing.T) {
+		s := "h"
+		expected := "h"
+		assert.Equal(t, expected, reverseString(s))
+	})
 }

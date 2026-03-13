@@ -20,15 +20,16 @@ func TwoSum(nums []int, target int) []int {
 }
 
 func TwoSumSorted(num []int, target int) []int {
-	left, right := 0, len(num)-1
+	low, high := 0, len(num)-1
 
-	for i := 0; i < right && right > left; i++ {
-		if num[left]+num[right] > target {
-			right = right - 1
-		}
-
-		if num[left]+num[right] == target {
-			return []int{left, right}
+	for low < high {
+		sum := num[low] + num[high]
+		if sum == target {
+			return []int{low, high}
+		} else if sum > target {
+			high--
+		} else {
+			low++
 		}
 	}
 

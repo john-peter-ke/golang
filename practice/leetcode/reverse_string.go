@@ -1,6 +1,10 @@
 package leetcode
 
 func reverseString(s string) string {
+	if len(s) < 2 {
+		return s
+	}
+
 	b := []byte(s)
 	start, end := 0, len(b)-1
 	for end > start {
