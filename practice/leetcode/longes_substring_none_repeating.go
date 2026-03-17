@@ -35,3 +35,25 @@ func lengthOfLongestSubstringOptimized(s string) int {
 	}
 	return maxLen
 }
+
+func lengthOfLongestSubstringHashTable(s string) int {
+	maxLen := 0
+
+	for i := 0; i < len(s); i++ {
+		set := make(map[byte]byte)
+		substrLen := 0
+
+		for j := i; j < len(s); j++ {
+			if _, ok := set[s[j]]; ok {
+				break
+			}
+			substrLen = (j - i) + 1
+			set[s[j]] = s[j]
+		}
+
+		maxLen = max(maxLen, substrLen)
+
+	}
+
+	return maxLen
+}

@@ -21,5 +21,6 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 		expected := 2
 		assert.Equal(t, lengthOfLongestSubstringWindow(input), expected)
 		assert.Equal(t, lengthOfLongestSubstringOptimized(input), expected)
+		assert.Equal(t, expected, lengthOfLongestSubstringHashTable(input))
 	})
 }
