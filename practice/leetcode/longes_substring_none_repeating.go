@@ -1,5 +1,33 @@
 package leetcode
 
+func lengthOfLongestSubstring(s string) int {
+	// charIndexMap stores the last seen position of each character
+	charIndexMap := make(map[byte]int)
+	maxLen := 0
+	left := 0
+
+	for right := 0; right < len(s); right++ {
+		char := s[right]
+
+		// If we've seen the character and it's within our current window
+		if index, found := charIndexMap[char]; found && index >= left {
+			// Jump the left pointer to the right of the previous occurrence
+			left = index + 1
+		}
+
+		// Update the character's last seen index
+		charIndexMap[char] = right
+
+		// Calculate current window size and update maxLen
+		currentWindowSize := right - left + 1
+		if currentWindowSize > maxLen {
+			maxLen = currentWindowSize
+		}
+	}
+
+	return maxLen
+}
+
 func lengthOfLongestSubstringWindow(s string) int {
 	set := make(map[byte]bool)
 	maxLen, left := 0, 0

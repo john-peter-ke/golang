@@ -9,20 +9,26 @@ import (
 func TestFirstMissingPositive(t *testing.T) {
 
 	t.Run("Case 1", func(t *testing.T) {
-		arr := []int{1, 2, 0}
-		expected := 3
+		arr := []int{0, 1}
+		expected := 2
 		assert.Equal(t, expected, firstMissingPositive(arr))
 	})
 
 	t.Run("Case 2", func(t *testing.T) {
-		arr := []int{3, 4, -1, 1}
+		arr := []int{3, 0, 1}
 		expected := 2
 		assert.Equal(t, expected, firstMissingPositive(arr))
 	})
 
 	t.Run("Case 3", func(t *testing.T) {
-		arr := []int{7, 8, 9, 11, 12}
-		expected := 1
+		arr := []int{9, 6, 4, 2, 3, 5, 7, 0, 1}
+		expected := 8
+		assert.Equal(t, expected, firstMissingPositive(arr))
+	})
+
+	t.Run("Case 4", func(t *testing.T) {
+		arr := []int{1}
+		expected := 0
 		assert.Equal(t, expected, firstMissingPositive(arr))
 	})
 }

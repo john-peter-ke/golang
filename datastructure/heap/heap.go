@@ -4,36 +4,41 @@ type maxHeap struct {
 	array []int
 }
 
+// Time Complexity: 0(log n)
+// Space Complexity: 0(1)
 func (h *maxHeap) Insert(key int) {
 	h.array = append(h.array, key)
-	h.maxHeapifyUp(len(h.array) - 1)
+	h.heapifyUp(len(h.array) - 1)
 }
 
-func (h *maxHeap) maxHeapifyUp(index int) {
-	for h.array[parent(index)] < h.array[index] {
-		h.swap(parent(index), index)
+func (h *maxHeap) heapifyUp(index int) {
+	for h.array[index] > h.array[parent(index)] {
+		h.swap(index, parent(index))
 		index = parent(index)
 	}
 }
 
+// Time Complexity: 0(log n)
+// Space Complexity: 0(1)
 func (h *maxHeap) Extract() int {
 	if len(h.array) == 0 {
 		return -1
 	}
 
 	maxIndex := 0
-	maxValue := h.array[maxIndex]
-	size := len(h.array) - 1
+	lastIndex := len(h.array) - 1
 
-	// take last index and put it in the root
-	h.array[0] = h.array[size]
-	h.array = h.array[:size]
+	maxValue := h.array[maxIndex]
+	h.array[0] = h.array[lastIndex]
+	h.array = h.array[:lastIndex]
 
 	h.maxHeapifyDown(maxIndex)
 
 	return maxValue
 }
 
+// Time Complexity: 0(log n)
+// Space Complexity: 0(log n)
 func (h *maxHeap) maxHeapifyDown(index int) {
 	lastIndex := len(h.array) - 1
 	l, r := left(index), right(index)
@@ -48,8 +53,8 @@ func (h *maxHeap) maxHeapifyDown(index int) {
 			childToCompare = r
 		}
 
-		if h.array[index] < h.array[childToCompare] {
-			h.swap(index, childToCompare)
+		if h.array[childToCompare] > h.array[index] {
+			h.swap(childToCompare, index)
 			index = childToCompare
 			l, r = left(index), right(index)
 		} else {

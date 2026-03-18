@@ -9,9 +9,9 @@ import (
 func TestMergeTwoListsArray(t *testing.T) {
 
 	t.Run("Case 1", func(t *testing.T) {
-		arr1 := []int{1, 2, 3}
-		arr2 := []int{1, 3, 4}
-		expected := []int{1, 1, 2, 3, 3, 4}
+		arr1 := []int{1, 2, 3, 5, 6, 7}
+		arr2 := []int{1, 3, 4, 6, 8, 9, 10}
+		expected := []int{1, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 10}
 		current := mergeTwoLists(createList(arr1), createList(arr2))
 
 		var count int

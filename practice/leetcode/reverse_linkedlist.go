@@ -9,11 +9,11 @@ func reverseList(head *ListNode) *ListNode {
 	current := head
 	for current != nil {
 		// swap next node to prev
-		next := current.Next // place holder for next node
-		current.Next = prev  // make next node as previous
-		prev = current       // make prev node as current node
+		nextTemp := current.Next // place holder for next node iteration
+		current.Next = prev      // make next node as previous
+		prev = current           // make prev node as current node
 
-		current = next // use this for iteration
+		current = nextTemp // use this for iteration
 	}
 
 	return prev

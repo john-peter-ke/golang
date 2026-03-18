@@ -11,14 +11,25 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 	t.Run("Case 1", func(t *testing.T) {
 		input := "pwwkew"
 		expected := 3
-		assert.Equal(t, lengthOfLongestSubstringWindow(input), expected)
-		assert.Equal(t, lengthOfLongestSubstringOptimized(input), expected)
+		assert.Equal(t, lengthOfLongestSubstring(input), expected)
+		assert.Equal(t, expected, lengthOfLongestSubstringWindow(input))
+		assert.Equal(t, expected, lengthOfLongestSubstringOptimized(input))
+		assert.Equal(t, expected, lengthOfLongestSubstringHashTable(input))
 	})
 
 	t.Run("Case 2", func(t *testing.T) {
-
 		input := "au"
 		expected := 2
+		assert.Equal(t, lengthOfLongestSubstring(input), expected)
+		assert.Equal(t, lengthOfLongestSubstringWindow(input), expected)
+		assert.Equal(t, lengthOfLongestSubstringOptimized(input), expected)
+		assert.Equal(t, expected, lengthOfLongestSubstringHashTable(input))
+	})
+
+	t.Run("Case ", func(t *testing.T) {
+		input := "au"
+		expected := 2
+		assert.Equal(t, lengthOfLongestSubstring(input), expected)
 		assert.Equal(t, lengthOfLongestSubstringWindow(input), expected)
 		assert.Equal(t, lengthOfLongestSubstringOptimized(input), expected)
 		assert.Equal(t, expected, lengthOfLongestSubstringHashTable(input))
